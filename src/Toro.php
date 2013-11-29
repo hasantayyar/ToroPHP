@@ -1,5 +1,32 @@
 <?php
 
+class ToroRequest {
+
+    public static function post($name) {
+        return isset($_POST[$name]) ? $_POST[$name] : FALSE;
+    }
+
+    public static function get($name) {
+        return isset($_GET[$name]) ? $_GET[$name] : FALSE;
+    }
+
+}
+
+class ToroResponse {
+
+    public static function redirect($url, $code = FALSE) {
+        if ($code) {
+            header("Location: " . $url, TRUE, $code);
+        } else {
+            header("Location: " . $url, TRUE, $code);
+        }
+        if ($die) {
+            die();
+        }
+    }
+
+}
+
 class Toro
 {
     public static function serve($routes)
