@@ -14,7 +14,7 @@ class ToroRequest {
 
 class ToroResponse {
 
-    public static function redirect($url, $code = FALSE) {
+    public static function redirect($url, $code = FALSE,$die=FALSE) {
         if ($code) {
             header("Location: " . $url, TRUE, $code);
         } else {
