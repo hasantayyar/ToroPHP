@@ -9,6 +9,24 @@ class ToroRequest {
     public static function get($name) {
         return isset($_GET[$name]) ? $_GET[$name] : FALSE;
     }
+    
+    public static function session($param, $delete_after = FALSE) {
+        if (is_array($param)) {
+            foreach ($param as $k => $v) {
+                $_SESSION[$k] = $v;
+            }
+            return TRUE;
+        } else {
+            if (isset($_SESSION[$param]) && !empty($_SESSION[$param])) {
+                $value = $_SESSION[$param];
+                if ($delete_after) {
+                    unset($_SESSION[$param]);
+                }
+                return $value;
+            }
+            return FALSE;
+        }
+    }
 
 }
 
